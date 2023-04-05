@@ -48,4 +48,4 @@ jobs:
       with:
           context: .
           push: true
-          tags: ${{ env.APP_NAME }}:${{ github.sha }}
+          tags: dart1612/jpj-test-purpose:${{ env.APP_NAME }}:${{ github.sha }}
