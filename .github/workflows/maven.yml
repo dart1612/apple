@@ -9,23 +9,23 @@
 name: GH Action Build
 
 on:
-  workflow_dispatch:
-   inputs:
-    isrun3enabled:
-        description: Do you want to run step 3
-        type: boolean
-        required: false
-        default: false
-    isrun4enabled:
-        description: Do you want to run step 4
-        type: boolean
-        required: false
-        default: false
   push:
     branches: [ "v-jitjose" ]
-    
+  workflow_dispatch:
+   inputs:
+    skipbuildjob:
+        description: Skip Build Job
+        type: boolean
+        required: false
+        default: false
+    skippipelinetrigger:
+        description: Skip Pipeline trigger job
+        type: boolean
+        required: false
+        default: false
 jobs:
   build:
+    if: ${{ github.event.inputs.skipbuildjob == 'true' }}
     runs-on: ubuntu-latest
     steps:
     - name: Test run 1
@@ -34,13 +34,12 @@ jobs:
       run: echo "This is test 2"
       
   pipeline-trigger:
+    if: ${{ github.event.inputs.skippipelinetrigger == 'true' }}
     needs: build
     runs-on: ubuntu-latest
     steps:
     - name: Test run 3
-      if: ${{ github.event.inputs.isrun3enabled == 'true' }}
       run: echo "This is test 1"
     - name: Test run 4
-      if: ${{ github.event.inputs.isrun4enabled == 'true' }}
       run: echo "This is test 2"
     
