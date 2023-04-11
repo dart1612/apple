@@ -6,11 +6,12 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven
+name: GH Action Build
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ "master" ]
+    branches: [ "v-jitjose" ]
     
 env:
   REGISTRY: docker.io
@@ -42,7 +43,7 @@ jobs:
       with:
           registry: ${{ env.REGISTRY }}
           username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          password: Jithin@1123
           
     - name: Build and push
       uses: docker/build-push-action@v3
