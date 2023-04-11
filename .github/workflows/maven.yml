@@ -10,6 +10,12 @@ name: GH Action Build
 
 on:
   workflow_dispatch:
+   inputs:
+    foo:
+        description: Whether to foo
+        type: boolean
+        required: false
+        default: false
   push:
     branches: [ "v-jitjose" ]
     
@@ -20,6 +26,7 @@ jobs:
     
     steps:
     - name: Test run 1
+      if: ${{ github.event.inputs.foo == 'true' }}
       run: echo "This is test 1"
     - name: Test run 2
       run: echo "This is test 2"
