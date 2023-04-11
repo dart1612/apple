@@ -11,8 +11,13 @@ name: GH Action Build
 on:
   workflow_dispatch:
    inputs:
-    foo:
-        description: Whether to foo
+    isrun3enabled:
+        description: Do you want to run step 3
+        type: boolean
+        required: false
+        default: false
+    isrun4enabled:
+        description: Do you want to run step 4
         type: boolean
         required: false
         default: false
@@ -21,13 +26,21 @@ on:
     
 jobs:
   build:
-  
     runs-on: ubuntu-latest
-    
     steps:
     - name: Test run 1
-      if: ${{ github.event.inputs.foo }}
       run: echo "This is test 1"
     - name: Test run 2
+      run: echo "This is test 2"
+      
+  pipeline-trigger:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Test run 3
+      if: ${{ github.event.inputs.isrun3enabled == 'true' }}
+      run: echo "This is test 1"
+    - name: Test run 4
+      if: ${{ github.event.inputs.isrun4enabled == 'true' }}
       run: echo "This is test 2"
     
