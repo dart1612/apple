@@ -10,7 +10,7 @@ name: Java CI with Maven
 
 on:
   push:
-    branches: [ "v-jitjose" ]
+    branches: [ "master" ]
     
 env:
   REGISTRY: docker.io
