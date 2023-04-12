@@ -34,7 +34,7 @@ jobs:
       run: echo "This is test 2"
       
   pipeline-trigger:
-    if: ${{ github.event.inputs.skippipelinetrigger == 'false' } && ${{ always() }}}
+    if: ${{ github.event.inputs.skippipelinetrigger == 'false' && always() }}
     needs: build
     runs-on: ubuntu-latest
     steps:
