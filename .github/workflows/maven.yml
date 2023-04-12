@@ -27,6 +27,8 @@ jobs:
   build:
     if: ${{ github.event.inputs.skipbuildjob == 'false' || github.event_name == 'push' }}
     runs-on: ubuntu-latest
+    outputs: 
+      output1: jithin
     steps:
     - name: Test run 1
       run: echo "This is test 1"
@@ -38,7 +40,10 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - name: Test run 3
-      run: echo "This is test 1"
-    - name: Test run 4
-      run: echo "This is test 2"
+     - env: 
+        out1: ${{needs.build.outputs.output1}}
+      
+     - name: Test run 3
+       run: echo "$out1"
+     - name: Test run 4
+       run: echo This is test 1234
