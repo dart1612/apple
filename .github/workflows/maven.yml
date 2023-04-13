@@ -41,4 +41,4 @@ jobs:
      - name: Test run 3
        run: echo "$out1"
      - name: Test run 4
-       run: echo "Error!" 1>&2
+       run: exit 64
