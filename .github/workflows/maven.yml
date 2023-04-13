@@ -46,4 +46,4 @@ jobs:
      - name: Test run 3
        run: echo "$out1"
      - name: Test run 4
-       run: echo "second echo"
+       run: exit 64
