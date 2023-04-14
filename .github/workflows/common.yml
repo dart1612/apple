@@ -12,8 +12,10 @@ on:
   workflow_call:
    secrets:
       DOCKER_USERNAME:
+        description: 'some description1'
         required: true
       DOCKER_PASSWORD:
+        description: 'some description2'
         required: true
 
 env:
