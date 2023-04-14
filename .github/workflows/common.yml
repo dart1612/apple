@@ -10,6 +10,11 @@ name: Reusable workflow
 
 on:
   workflow_call
+
+env:
+  REGISTRY: docker.io
+  APP_NAME: test
+
   
 jobs:
   build:
