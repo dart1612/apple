@@ -40,7 +40,7 @@ jobs:
       uses: docker/login-action@v2
       with:
           registry: ${{ env.REGISTRY }}
-          username: ${{ secrets.DOCKER_USERNAME }}
+          username: dart1612
           password: Jithin@1123
           
     - name: Build and push
