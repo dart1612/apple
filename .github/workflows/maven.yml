@@ -26,7 +26,9 @@ on:
 jobs:
   build:
     uses: ./.github/workflows/common.yml
-    secrets: inherit
+    secrets: 
+       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+       DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD}}
    
       
   pipeline-trigger:
@@ -37,4 +39,4 @@ jobs:
      - name: Test run 3
        run: echo "run 3"
      - name: Test run 4
-       run: exit 64
+       run: echo "run 4"
