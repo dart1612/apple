@@ -26,6 +26,7 @@ on:
 jobs:
   build:
     uses: ./.github/workflows/common.yml
+    secrets: inherit
    
       
   pipeline-trigger:
