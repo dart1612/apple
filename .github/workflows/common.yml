@@ -15,10 +15,32 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-
+    
     steps:
     - uses: actions/checkout@v3
-    - name: Common run 1
-      run: echo "This is from common 1"
-    - name: Common run 2
-      run: echo "This is from common 2"
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: maven
+    - name: Build with Maven
+      run: |
+          mvn clean install -DchangeNumber=${{ github.sha }} -DbuildType=release -DbuildNumber=${{ github.run_id }} -DbuildBranch=${{ github.ref }}
+    
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+      
+    - name: Login to DockerHub
+      uses: docker/login-action@v2
+      with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: Jithin@1123
+          
+    - name: Build and push
+      uses: docker/build-push-action@v3
+      with:
+          context: .
+          push: true
+          tags: dart1612/jpj-test-purpose:${{ github.sha }}
