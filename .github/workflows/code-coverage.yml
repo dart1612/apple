@@ -23,9 +23,3 @@ jobs:
     - name: Run Tests with JaCoCo
       run: mvn -B test jacoco:report
 
-    - name: Generate Code Coverage Report
-      uses: Flex/code-coverage-reporter-action@v4
-      with:
-        reporters: cobertura
-        directory: target/site/cobertura
-        github-token: ${{ secrets.GITHUB_TOKEN }}
